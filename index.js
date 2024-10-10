@@ -404,7 +404,7 @@ const phones = [
   }
 })();
 
-// *оновлення: додати нфс всім телефонам 2023 року випуску,
+// *оновлення: додати DualSim всім телефонам 2023 року випуску,
 
 (async function () {
   try {
@@ -413,7 +413,7 @@ const phones = [
     const endDate = new Date(Date.UTC(currentYear + 1, 0, 1));
 
     const updatedPhones = await Phone.update(
-      { isNFC: true },
+      { is_dual_sim: true },
       {
         where: {
           release_date: {
