@@ -2,7 +2,6 @@ const _ = require('lodash');
 const createHttpError = require('http-errors');
 const { Phone } = require('../models');
 
-// Створення нового телефону
 module.exports.createPhone = async (req, res, next) => {
   const { body } = req;
 
@@ -19,7 +18,6 @@ module.exports.createPhone = async (req, res, next) => {
   }
 };
 
-// Отримання всіх телефонів з можливістю пагінації
 module.exports.getPhones = async (req, res, next) => {
   const {
     query: { page = 1, results = 10 },
@@ -42,7 +40,6 @@ module.exports.getPhones = async (req, res, next) => {
   }
 };
 
-// Отримання телефону за ID
 module.exports.getPhoneById = async (req, res, next) => {
   const {
     params: { phoneId },
@@ -63,7 +60,6 @@ module.exports.getPhoneById = async (req, res, next) => {
   }
 };
 
-// Оновлення телефону за ID
 module.exports.updatePhoneById = async (req, res, next) => {
   const {
     params: { phoneId },
@@ -87,7 +83,6 @@ module.exports.updatePhoneById = async (req, res, next) => {
   }
 };
 
-// Видалення телефону за ID
 module.exports.deletePhoneById = async (req, res, next) => {
   const {
     params: { phoneId },
@@ -95,7 +90,7 @@ module.exports.deletePhoneById = async (req, res, next) => {
 
   try {
     const deletedCount = await Phone.destroy({
-      where: { id:phoneId },
+      where: { id: phoneId },
     });
 
     if (deletedCount === 0) {
@@ -103,6 +98,40 @@ module.exports.deletePhoneById = async (req, res, next) => {
     }
 
     res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.updateImage = async (req, res, next) => {
+  const {
+    file,
+    params: { phoneId },
+  } = req;
+
+  try {
+    if (!file) {
+      return next(createHttpError(422, 'Image is Required'));
+    }
+
+    const [, [updatedPhone]] = await Phone.update(
+      {
+        image: 'images/' + file.filename,
+      },
+      {
+        where: { id: phoneId },
+        returning: true,
+        raw: true,
+      }
+    );
+
+    if (!updatedPhone) {
+      return next(createHttpError(404, 'Phone Not Found'));
+    }
+
+    const preparedPhone = _.omit(updatedPhone, ['createdAt', 'updatedAt']);
+
+    res.status(200).send({ data: preparedPhone });
   } catch (error) {
     next(error);
   }
