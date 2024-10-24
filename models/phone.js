@@ -98,6 +98,9 @@ module.exports = (sequelize, DataTypes) => {
       is_dual_sim: {
         type: DataTypes.BOOLEAN,
       },
+      image: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,
