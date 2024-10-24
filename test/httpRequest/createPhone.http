@@ -1,0 +1,40 @@
+### 201 {phone}
+
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+  {
+      "brand": "Apple",
+      "model": "iPhone 16",
+      "os": "iOS",
+      "screen_size": 6.9,
+      "ram": 16,
+      "storage_capacity": 256,
+      "battery_capacity": 3279,
+      "camera_megapixels": 48.5,
+      "price": 1499.99,
+      "release_date": "2024-10-06",
+      "color": "Desert Titanium",
+      "is_dual_sim": false
+    }
+
+### 500
+
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+  {
+      "brand": "A",
+      "model": "iPhone 16",
+      "os": "iOS",
+      "screen_size": 6.9,
+      "ram": 16,
+      "storage_capacity": 256,
+      "battery_capacity": 3279,
+      "camera_megapixels": 48.5,
+      "price": 1499.99,
+      "release_date": "2024-10-06",
+      "color": "Desert Titanium",
+      "is_dual_sim": false
+    }
+

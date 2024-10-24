@@ -1,0 +1,36 @@
+###200 {phones}
+PATCH http://localhost:5000/api/phones/4
+Content-Type: application/json
+
+{
+  "brand": "Nokia",
+  "model": "N93",
+  "price": 100
+}
+
+### 404 Not Found
+PATCH http://localhost:5000/api/phones/1000
+Content-Type: application/json
+
+{
+  "brand": "Nokia",
+  "model": "N93",
+  "price": 100
+}
+
+
+### 500 model valid error
+PATCH http://localhost:5000/api/phones/10
+Content-Type: application/json
+
+{
+  "brand": "N"
+}
+
+### 500 db  error
+PATCH http://localhost:5000/api/phones/1000
+Content-Type: application/json
+
+{
+  "model": "Nokia"
+}

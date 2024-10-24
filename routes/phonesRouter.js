@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { phonesControllers } = require('../controllers');
+const { validatePhone } = require('./../middleware/validatePhone');
 
 const phonesRouter = Router();
 
