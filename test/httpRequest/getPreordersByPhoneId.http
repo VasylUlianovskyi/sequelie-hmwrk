@@ -1,0 +1,8 @@
+### 200 {phone preorder}
+
+GET http://localhost:5000/api/phones/12/preorders
+
+
+### 404 Not Found 
+
+GET http://localhost:5000/api/phones/18/preorders

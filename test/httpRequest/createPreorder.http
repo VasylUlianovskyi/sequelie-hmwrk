@@ -1,0 +1,23 @@
+### 201 {preorders}
+
+POST http://localhost:5000/api/preorders
+Content-Type: application/json
+
+{
+    "phoneId": 12,
+    "customerName": "Олена Пчілка",
+    "customerPhone": "+380123456789",
+    "status": "pending"
+}
+
+### 500
+
+POST http://localhost:5000/api/preorders
+Content-Type: application/json
+
+{
+    "phoneId": 1000,
+    "customerName": "Олена Пчілка",
+    "customerPhone": "+380123456789",
+    "status": "pending"
+}

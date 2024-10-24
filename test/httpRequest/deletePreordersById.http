@@ -1,0 +1,5 @@
+### 204
+DELETE http://localhost:5000/api/preorders/10
+
+### 404
+DELETE http://localhost:5000/api/preorders/0

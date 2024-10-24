@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { phonesControllers } = require('../controllers');
+const { phonesControllers, preordersControllers } = require('../controllers');
 const { validatePhone } = require('./../middleware/validatePhone');
 
 const phonesRouter = Router();
@@ -14,5 +14,10 @@ phonesRouter
   .get(phonesControllers.getPhoneById)
   .patch(validatePhone, phonesControllers.updatePhoneById)
   .delete(phonesControllers.deletePhoneById);
+
+phonesRouter.get(
+  '/:phoneId/preorders',
+  preordersControllers.getPreordersByPhoneId
+);
 
 module.exports = phonesRouter;

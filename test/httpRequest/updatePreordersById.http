@@ -1,0 +1,23 @@
+###200 {preorders}
+PATCH http://localhost:5000/api/preorders/4
+Content-Type: application/json
+
+{
+    "phoneId": 6,
+    "customerName": "Анна Анненко",
+    "customerPhone": "+380111222333",
+    "status": "done"
+}
+
+
+### 404 Not Found
+PATCH http://localhost:5000/api/preorders/10
+Content-Type: application/json
+
+{
+    "phoneId": 6,
+    "customerPhone": "+380111222333",
+    "status": "done"
+}
+
+
