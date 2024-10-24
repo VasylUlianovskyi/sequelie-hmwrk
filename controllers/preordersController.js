@@ -146,3 +146,32 @@ module.exports.getPreordersByPhoneId = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.createPreorderForPhone = async (req, res, next) => {
+  const {
+    params: { phoneId },
+    body,
+  } = req;
+
+  try {
+  
+    const foundPhone = await Phone.findByPk(phoneId);
+    if (!foundPhone) {
+      return next(createHttpError(404, 'Phone Not Found'));
+    }
+
+    
+    const createdPreorder = await foundPhone.createPreorder(body);
+
+
+    const preparedPreorder = {
+      ...createdPreorder.get(),
+      phoneId,  
+    };
+
+
+    res.status(201).send({ data: preparedPreorder });
+  } catch (error) {
+    next(error);
+  }
+};

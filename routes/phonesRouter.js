@@ -20,4 +20,9 @@ phonesRouter.get(
   preordersControllers.getPreordersByPhoneId
 );
 
+phonesRouter.post(
+  '/:phoneId/preorders',
+  preordersControllers.createPreorderForPhone
+);
+
 module.exports = phonesRouter;
